@@ -1,4 +1,4 @@
-from yourapp.models import Product, Category
+from MyApp.models import Product, Category
 from products_seed import products_seed_data
 
 def run():
