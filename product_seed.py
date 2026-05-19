@@ -1,5 +1,5 @@
 from MyApp.models import Product, Category
-from products_seed import products_seed_data
+from seed import products_seed_data
 
 def run():
     for item in products_seed_data:
