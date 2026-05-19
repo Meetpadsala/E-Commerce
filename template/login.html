@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="/">Home</a>
+                <span class="breadcrumb-item active">Contact</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <h2 class="text-center">Login Form</h2>
+    <form action="/login/" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+          
+           
+        </div>
+        <div class="form-group">
+            <label for="userID">User ID</label>
+            <input type="text" name="uid" class="form-control" id="userID" placeholder="User ID">
+        </div>
+       
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPassword">Password</label>
+                <input type="password" name="pass1" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+         
+        </div>
+        <button type="submit" class="btn btn-primary">login</button>
+    </form>
+</div>
+
+{% endblock body%}
