@@ -1,8 +1,24 @@
 services:
+   db:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  web:
+    image: e-commerce:latest
+    container_name: app
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
 
- web:
-   image: e-commerce:latest
-   container_name: app
-   ports:
-     - "8000:8000"
-   
+
+volumes:
+  mysql_data:
