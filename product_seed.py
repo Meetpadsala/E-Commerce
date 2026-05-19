@@ -1,6 +1,30 @@
-from MyApp.models import Product, Category
+from MyApp.models import Category, Product
 
 def run():
+
+    # -------------------------
+    # CATEGORY SEED DATA
+    # -------------------------
+    categories = [
+        {"cid": 1, "cname": "Computer Accessories"},
+        {"cid": 2, "cname": "Electronics"},
+        {"cid": 3, "cname": "Office Products"},
+        {"cid": 4, "cname": "Mobile Accessories"},
+        {"cid": 5, "cname": "Home Appliances"},
+    ]
+
+    for cat in categories:
+        Category.objects.get_or_create(
+            cid=cat["cid"],
+            defaults={"cname": cat["cname"]}
+        )
+
+    print("✅ Categories Inserted Successfully!")
+
+
+    # -------------------------
+    # PRODUCT SEED DATA
+    # -------------------------
     products_seed_data = [
         {
             "pname": "Wireless Mouse",
@@ -75,11 +99,7 @@ def run():
     ]
 
     for item in products_seed_data:
-        try:
-            category = Category.objects.get(cid=item["c_id"])   # ✅ cid use karvu
-        except Category.DoesNotExist:
-            print(f"❌ Category cid {item['c_id']} not found, skipping: {item['pname']}")
-            continue
+        category = Category.objects.get(cid=item["c_id"])
 
         Product.objects.create(
             pname=item["pname"],
@@ -89,4 +109,4 @@ def run():
             c_id=category
         )
 
-    print("✅ 10 Products Seeded Successfully!")
+    print("✅ 10 Products Inserted Successfully!")
