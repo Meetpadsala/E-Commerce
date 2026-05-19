@@ -1,0 +1,8 @@
+services:
+
+ web:
+   image: e-commerce:latest
+   container_name: app
+   ports:
+     - "8000:8000"
+   
