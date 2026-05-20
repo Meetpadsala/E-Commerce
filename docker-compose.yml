@@ -15,7 +15,7 @@ services:
       retries: 20
 
   web:
-    build: .
+    image: e-commerce:latest
     container_name: app
     restart: always
     ports:
