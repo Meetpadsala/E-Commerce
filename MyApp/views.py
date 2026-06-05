@@ -206,15 +206,17 @@ def deletewishlist(request,id):
     data.delete()
     messages.success(request,"Product deleted from Wishlist")
     return redirect('/wishlist/')
+@login_required(login_url='/login/')
 def checkout(request):
-    cdata=Cart.objects.filter(u_id=request.user).count()
-    cart=Cart.objects.filter(u_id=request.user)
-    if cdata==0:
-        messages.error(request,'please add the data')
+    cdata = Cart.objects.filter(u_id=request.user).count()
+    cart = Cart.objects.filter(u_id=request.user)
+
+    if cdata == 0:
+        messages.error(request, 'please add the data')
         return redirect('/cart/')
-    # Calculate totals
+
     total_amount = sum(item.sub_total() for item in cart)
-    charges = 50  # Assuming fixed shipping charges
+    charges = 50
     ftotal = total_amount + charges
 
     if (request.method=='POST'):
