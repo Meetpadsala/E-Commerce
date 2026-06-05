@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-deployment
+  namespace: e-commerce
+  labels:
+    app: e-commerce
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: e-commerce
+
+  template:
+    metadata:
+      labels:
+        app: e-commerce
+    spec:
+      containers:
+      - name: e-commerce
+        image: meetpadsala/e-commerce:latest
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: e-secret
